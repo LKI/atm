@@ -12,4 +12,6 @@ public class MSG {
     public static final String STH_WRONG          = "Something wrong, usually code issue"; // TODO report this to central
     public static final String UNKNOWN            = "Unknown";
     public static final String ATM                = "Acfun TerMinal";
+    public static final String FAIL_TO_START_BS   = "Fail to start browser.";
+    public static final String REPO_URL           = "This project is maintain on [%s]";
 }

@@ -1,5 +1,6 @@
 package com.liriansu.atm;
 
+import com.liriansu.atm.acfun.AcFun;
 import com.liriansu.atm.annotation.CommandRegistry;
 import com.liriansu.atm.entity.Command;
 import com.liriansu.atm.entity.cmdline.CommandLine;
@@ -8,6 +9,7 @@ import com.liriansu.atm.util.MSG;
 import org.scannotation.AnnotationDB;
 import org.scannotation.ClasspathUrlFinder;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -15,6 +17,7 @@ import java.net.URL;
 import java.util.*;
 
 public class Context {
+    private AcFun          acfun;
     private Command        command;
     private CommandBuilder commands;
     private CommandLine    cmdline;
@@ -41,13 +44,33 @@ public class Context {
             commands.showCommands(System.err);
             return false;
         }
+        try {
+            // TODO validate if we have chromedriver
+            File driver = new File(System.getProperty("atm.dir"), "driver/chrome/chromedriver.exe");
+            acfun = new AcFun(driver.getAbsolutePath());
+        } catch (IOException e) {
+            return Err.error(e, MSG.FAIL_TO_START_BS);
+        }
         return true;
+    }
+
+    public void cleanup() {
+        if (null != acfun) acfun.stop();
     }
 
     public boolean validate() {
         // TODO add validation here
+        cmdline.addOption("h", "help", false, "show help message");
         cmdline.parse(args);
+        if (cmdline.hasOption("h")) {
+            cmdline.showHelp(System.err, command.getName());
+            return false;
+        }
         return true;
+    }
+
+    public AcFun getAcfun() {
+        return acfun;
     }
 
     public Command getCommand() {

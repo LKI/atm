@@ -13,17 +13,21 @@ public class Main {
 
     public static int parse(String[] args) {
         Context context = new Context(args);
-        if (context.setup()) {
-            try {
-                Constructor<?> con     = context.getCommand().getImpl().getConstructor();
-                IProcess       process = (IProcess) con.newInstance();
-                process.setupCmdline(context.getCmdline());
-                if (context.validate() && process.execute(context)) {
-                    return 0;
+        try {
+            if (context.setup()) {
+                try {
+                    Constructor<?> con     = context.getCommand().getImpl().getConstructor();
+                    IProcess       process = (IProcess) con.newInstance();
+                    process.setupCmdline(context.getCmdline());
+                    if (context.validate() && process.execute(context)) {
+                        return 0;
+                    }
+                } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
+                    Err.error(e, MSG.FAIL_TO_START_PS, MSG.STH_WRONG);
                 }
-            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
-                Err.error(e, MSG.FAIL_TO_START_PS, MSG.STH_WRONG);
             }
+        } finally {
+            context.cleanup();
         }
         return 1;
     }

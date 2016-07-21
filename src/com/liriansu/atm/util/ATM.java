@@ -11,6 +11,7 @@ public class ATM {
     public static final String FIRST_TIME = "firstTime";
     public static final String PROTOCOL   = "protocol";
     public static final String SH_START   = "shell.start";
+    public static final String URL        = "http://www.github.com/LKI/atm";
 
     /**
      * Get ATM version by reading /VERSION resource
@@ -18,10 +19,11 @@ public class ATM {
      * @return version number
      */
     public static String getVersion() {
-        String version = MSG.UNKNOWN;
+        String version;
         try (BufferedReader br = new BufferedReader(new InputStreamReader(ATM.class.getClassLoader().getResourceAsStream("/VERSION")))) {
             version = br.readLine().trim();
         } catch (IOException e) {
+            version = MSG.UNKNOWN;
         }
         return version;
     }

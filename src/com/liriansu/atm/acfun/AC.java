@@ -1,18 +1,25 @@
 package com.liriansu.atm.acfun;
 
 public class AC {
-    private long id;
+    private final long   id;
+    private final String html;
+    private final String article;
 
-    public AC(long id) {
+    public AC(long id, String html, String article) {
         this.id = id;
+        this.html = html;
+        this.article = article;
     }
 
-    public AC(String id) {
-        this.id = Long.parseLong(id);
+    public long getId() {
+        return id;
     }
 
-    public String getUrl() {
-//        return String.format("%s://%s/a/ac%s", ATM.PROTOCOL, ATM.DOMAIN, id);
-        return String.format("http://www.acfun.tv/a/ac%s", id);
+    public String getHtml() {
+        return html;
+    }
+
+    public String getArticle() {
+        return article;
     }
 }

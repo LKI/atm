@@ -4,12 +4,6 @@ import com.liriansu.atm.Context;
 import com.liriansu.atm.IProcess;
 import com.liriansu.atm.acfun.AC;
 import com.liriansu.atm.entity.cmdline.CommandLine;
-import com.liriansu.atm.util.Err;
-import com.liriansu.atm.util.HTML;
-import com.liriansu.atm.util.MSG;
-import com.liriansu.atm.util.StringUtils;
-
-import java.io.IOException;
 
 public class Get implements IProcess {
     /**
@@ -19,6 +13,8 @@ public class Get implements IProcess {
      */
     @Override
     public void setupCmdline(CommandLine cmdline) {
+        System.out.println("Setting up cmdline");
+        cmdline.setArgname("ac");
     }
 
     /**
@@ -30,14 +26,13 @@ public class Get implements IProcess {
      */
     @Override
     public boolean execute(Context context) {
+        System.out.println("Context#execute");
         // TODO show more info!
-        AC ac = new AC(StringUtils.getACid("ac2903169"));
-        try {
-            System.out.println(ac.getUrl());
-            String html = HTML.fetch(ac.getUrl());
-            System.out.println(html);
-        } catch (IOException e) {
-            return Err.error(e, MSG.FAIL_TO_FETCH_HTML);
+        for (String id : context.getCmdline().getArgList()) {
+            System.out.println(String.format("Fetching [%s]", id));
+            AC ac = context.getAcfun().get(Long.parseLong(id));
+            System.out.println(ac.getHtml());
+            System.out.println(ac.getArticle());
         }
         return true;
     }

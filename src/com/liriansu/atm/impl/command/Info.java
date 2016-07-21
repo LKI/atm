@@ -30,6 +30,7 @@ public class Info implements IProcess {
     public boolean execute(Context context) {
         // TODO show more info!
         System.out.println(String.format("%s %s", MSG.ATM, ATM.getVersion()));
+        System.out.println(String.format(MSG.REPO_URL, ATM.URL));
         return true;
     }
 }

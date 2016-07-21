@@ -20,7 +20,7 @@ Still at the very first stage, these are actually all TODOs.
 
 * I18N supported, at least Chinese and English (top two language)
 
-* May be some reports, like "how many pages are deleted", "who is the charmest acer"...
+* May be some reports, like "how many pages are deleted", "who is the cutest acer"...
 
 * Should support at least these commands (get / list / login,logout / clear-cache / validate,help,info,todo,update / config,alias / report)
 

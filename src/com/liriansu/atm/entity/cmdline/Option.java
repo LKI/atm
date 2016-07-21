@@ -4,11 +4,11 @@ package com.liriansu.atm.entity.cmdline;
  * The command option
  */
 public class Option {
-    private String  shortName;
-    private String  longName;
-    private String  description;
-    private boolean required;
-    private boolean hasArg;
+    private final String  shortName;
+    private final String  longName;
+    private final String  description;
+    private final boolean required;
+    private final boolean hasArg;
 
     /**
      * Construct an option
