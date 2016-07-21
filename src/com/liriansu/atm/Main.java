@@ -1,31 +1,30 @@
 package com.liriansu.atm;
 
-import com.liriansu.atm.entity.AC;
-import com.liriansu.atm.util.HTML;
-import com.liriansu.atm.util.StringUtils;
+import com.liriansu.atm.util.Err;
+import com.liriansu.atm.util.MSG;
 
-import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 public class Main {
     public static void main(String[] args) {
         System.exit(parse(args));
     }
 
-    private static int parse(String[] args) {
-        if (1 != args.length) {
-            System.err.println("Error: you should specify an ac article ID");
-            return 1;
+    public static int parse(String[] args) {
+        Context context = new Context(args);
+        if (context.setup()) {
+            try {
+                Constructor<?> con     = context.getCommand().getImpl().getConstructor();
+                IProcess       process = (IProcess) con.newInstance();
+                process.setupCmdline(context.getCmdline());
+                if (process.execute(context)) {
+                    return 0;
+                }
+            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
+                Err.error(e, MSG.FAIL_TO_START_PS, MSG.STH_WRONG);
+            }
         }
-        AC ac = new AC(StringUtils.getACid(args[0]));
-        try {
-            System.out.println(ac.getUrl());
-            String html = HTML.fetch(ac.getUrl());
-            System.out.println(html.contains("300"));
-            System.out.println(html);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return 1;
-        }
-        return 0;
+        return 1;
     }
 }

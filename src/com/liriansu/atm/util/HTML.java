@@ -12,7 +12,7 @@ public class HTML {
         URL           u    = new URL(url);
         URLConnection conn = u.openConnection();
         conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2");
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), ATM.ENCODING))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 html += line;

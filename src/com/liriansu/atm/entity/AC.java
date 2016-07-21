@@ -1,7 +1,5 @@
 package com.liriansu.atm.entity;
 
-import com.liriansu.atm.util.ATM;
-
 public class AC {
     private long id;
 
@@ -14,6 +12,7 @@ public class AC {
     }
 
     public String getUrl() {
-        return String.format("%s://%s/a/ac%s", ATM.PROTOCOL, ATM.DOMAIN, id);
+//        return String.format("%s://%s/a/ac%s", ATM.PROTOCOL, ATM.DOMAIN, id);
+        return String.format("http://www.acfun.tv/a/ac%s", id);
     }
 }
