@@ -6,6 +6,7 @@ import com.liriansu.atm.annotation.CommandRegistry;
 import com.liriansu.atm.entity.Command;
 import com.liriansu.atm.impl.command.Get;
 import com.liriansu.atm.impl.command.Info;
+import com.liriansu.atm.impl.command.Shell;
 
 @CommandRegistry(0)
 public class BaseRegistry implements ICommandRegistry {
@@ -19,12 +20,16 @@ public class BaseRegistry implements ICommandRegistry {
         Command cmd;
 
         cmd = commands.cmd("info");
-        cmd.setDesc("Show ATM information");
+        cmd.setDesc("show ATM information");
         cmd.setImpl(Info.class);
 
         cmd = commands.cmd("get");
-        cmd.setDesc("Get AcFun article");
+        cmd.setDesc("get AcFun article");
         cmd.setImpl(Get.class);
+
+        cmd = commands.cmd("shell");
+        cmd.setDesc("go into a Brave New World");
+        cmd.setImpl(Shell.class);
 
     }
 }

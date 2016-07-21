@@ -18,7 +18,7 @@ public class Main {
                 Constructor<?> con     = context.getCommand().getImpl().getConstructor();
                 IProcess       process = (IProcess) con.newInstance();
                 process.setupCmdline(context.getCmdline());
-                if (process.execute(context)) {
+                if (context.validate() && process.execute(context)) {
                     return 0;
                 }
             } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {

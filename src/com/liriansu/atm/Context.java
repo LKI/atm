@@ -44,6 +44,12 @@ public class Context {
         return true;
     }
 
+    public boolean validate() {
+        // TODO add validation here
+        cmdline.parse(args);
+        return true;
+    }
+
     public Command getCommand() {
         return command;
     }
