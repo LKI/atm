@@ -1,0 +1,37 @@
+group 'com.liriansu.atm'
+version '0.0.1'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.7
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+        resources {
+            srcDir 'test'
+        }
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+jar {
+    // Keep jar files clean
+    exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.MF'
+
+    // Set main class and class path
+    manifest {
+        attributes 'Main-Class': 'com.liriansu.atm.Main',
+                'Class-Path': configurations.compile.collect { it.getName() }.join(' ')
+    }
+}

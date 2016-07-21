@@ -1,0 +1,15 @@
+# gradle
+.gradle/
+build/
+
+# IntelliJ IDEA
+atm.iml
+atm.ipr
+atm.iws
+.idea/
+
+# backup/log files
+*.swp
+*.bak
+*~
+*.log
