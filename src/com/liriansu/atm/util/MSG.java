@@ -10,4 +10,6 @@ public class MSG {
     public static final String FAIL_TO_FETCH_HTML = "Fail to query html!";
     public static final String FAIL_TO_START_PS   = "Fail to start process!";
     public static final String STH_WRONG          = "Something wrong, usually code issue"; // TODO report this to central
+    public static final String UNKNOWN            = "Unknown";
+    public static final String ATM                = "Acfun TerMinal";
 }

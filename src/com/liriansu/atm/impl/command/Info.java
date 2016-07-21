@@ -3,7 +3,12 @@ package com.liriansu.atm.impl.command;
 import com.liriansu.atm.Context;
 import com.liriansu.atm.IProcess;
 import com.liriansu.atm.entity.cmdline.CommandLine;
+import com.liriansu.atm.util.ATM;
+import com.liriansu.atm.util.MSG;
 
+/**
+ * {@link Info} process shows some necessary information
+ */
 public class Info implements IProcess {
     /**
      * Setup the commandline. The {@link IProcess} should setup options and argument name in this method.
@@ -24,7 +29,7 @@ public class Info implements IProcess {
     @Override
     public boolean execute(Context context) {
         // TODO show more info!
-        System.out.println("Acfun TerMinal $VERSION");
+        System.out.println(String.format("%s %s", MSG.ATM, ATM.getVersion()));
         return true;
     }
 }

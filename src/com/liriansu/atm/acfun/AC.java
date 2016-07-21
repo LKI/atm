@@ -1,4 +1,4 @@
-package com.liriansu.atm.entity;
+package com.liriansu.atm.acfun;
 
 public class AC {
     private long id;
