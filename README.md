@@ -12,9 +12,11 @@ This project aims to provide a commandline tool for browsing [AcFun][1] on termi
 
 Still at the very first stage, these are actually all TODOs.
 
-* Direct shell command, and shell prompt
+* Direct shell command to get articles, and shell prompt
 
-* Colorful outputs, and all kinds of error messages (x
+* Login/logout, multi-user support
+
+* Read AcFun articles, filters
 
 * I18N supported, at least Chinese and English (top two language)
 
@@ -24,13 +26,21 @@ Still at the very first stage, these are actually all TODOs.
 
 # Dependency and installation
 
-Should only depends on Java 1.7.
+Depends on Java 1.7 (Actually I want to depends on Java1.8)
 
-**TODO: installation for Windows and Unix**
+Chrome. (Use selenium and chrome driver to get the page.)
+
+**TODO: Here should be installation process for Windows and Unix**
 
 # Contribution
 
 Currently I don't need it. :smiling\_imp:
+
+# Disclaimer
+
+ATM is not going to harm AcFun or violates AcFun's license.
+
+All for a better AcFun! 天下漫友是一家 Ailicili 干杯~
 
 # License
 
